@@ -27,11 +27,13 @@ exports.getNearbyCrops = async (req, res) => {
     }
 
     // Find all crops flowering on the given date
-    const allCrops = await Crop.find({
-      floweringStart: { $lte: date },
-      floweringEnd: { $gte: date },
-    });
+    // const allCrops = await Crop.find({
+    //   floweringStart: { $lte: date },
+    //   floweringEnd: { $gte: date },
+    // });
 
+    const allCrops = await Crop.find();
+    console.log("All Crops:", allCrops);
     // Filter crops within the specified radius using Haversine formula
     const nearby = allCrops.filter((crop) =>
       haversine(
